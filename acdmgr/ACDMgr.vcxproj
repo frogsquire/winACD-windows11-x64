@@ -114,6 +114,14 @@
       <AdditionalDependencies>setupapi.lib;$(DDK_LIB_PATH)\hid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\acdutils;$(DDK_INC_PATH)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>setupapi.lib;$(DDK_LIB_PATH)\hid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ACDMgr.cpp" />
   </ItemGroup>

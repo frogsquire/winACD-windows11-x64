@@ -112,6 +112,14 @@
       <AdditionalDependencies>powrprof.lib;setupapi.lib;$(DDK_LIB_PATH)\hid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\acdutils;$(DDK_INC_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>powrprof.lib;setupapi.lib;$(DDK_LIB_PATH)\hid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ACDPower.cpp" />
   </ItemGroup>
