@@ -107,7 +107,7 @@ CACDMonApp::RegNotifyThreadMain (LPVOID pParam) {
 	HKEY hKey;
  
 	if (RegCreateKeyEx (
-			HKEY_CURRENT_USER, "SOFTWARE\\WinACD\\Preferences", 0, 0,
+			HKEY_CURRENT_USER, _T("SOFTWARE\\WinACD\\Preferences"), 0, 0,
 			REG_OPTION_NON_VOLATILE, KEY_NOTIFY, 0, &hKey, 0
 		) != ERROR_SUCCESS)
 		return -1;

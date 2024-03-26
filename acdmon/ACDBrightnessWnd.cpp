@@ -151,7 +151,7 @@ CACDBrightnessWnd::UpdateBrightness () {
 static const UINT UWM_BEZEL_BN_CLICKED = ::RegisterWindowMessage(_T("ACD_WM_BEZEL_BN_CLICKED"));
 
 BEGIN_MESSAGE_MAP (CACDBrightnessWnd, CFrameWnd)
-	ON_WM_TIMER ()
+	// ON_WM_TIMER () todo 
 	ON_WM_CREATE ()
 	ON_WM_PAINT()
 	ON_WM_ERASEBKGND ()
@@ -389,7 +389,7 @@ RunDisplayProperties (LPVOID pParam) {
 	si.cb = sizeof (si);
 
 	 if (CreateProcess (NULL,
-			"rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,3",
+			_T("rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,3"),
 			NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi
 		)) {
 		WaitForSingleObject (pi.hProcess, INFINITE);

@@ -322,7 +322,7 @@ ACD_DispatchPnP (IN PDEVICE_OBJECT FilterDeviceObject, IN PIRP Irp) {
 			status = ACD_CacheStringDescriptors (deviceExt);
 
 		/* Get the ProductID out of the device descriptor */
-		desc = ExAllocatePool (NonPagedPool, sizeof(USB_DEVICE_DESCRIPTOR));
+		desc = ExAllocatePool2 (POOL_FLAG_NON_PAGED, sizeof(USB_DEVICE_DESCRIPTOR), 'usdd');
 		if (desc == NULL)
 			return STATUS_INSUFFICIENT_RESOURCES;
 
@@ -385,7 +385,7 @@ ACD_CacheStringDescriptors (IN OUT PDEVICE_EXTENSION DeviceExt) {
 
 	/* allocate desc0 */
 	DeviceExt->stringDescriptor [0] = NULL;
-	desc0 = ExAllocatePool (NonPagedPool, sizeof(USB_STRING_DESCRIPTOR));
+	desc0 = ExAllocatePool2 (POOL_FLAG_NON_PAGED, sizeof(USB_STRING_DESCRIPTOR), 'cach');
 	if (desc0 == NULL)
 		return STATUS_INSUFFICIENT_RESOURCES;
 
@@ -405,7 +405,7 @@ ACD_CacheStringDescriptors (IN OUT PDEVICE_EXTENSION DeviceExt) {
 		}
 
 		/* get StringDescN */
-		desc = ExAllocatePool (NonPagedPool, desc0->bLength);
+		desc = ExAllocatePool2 (POOL_FLAG_NON_PAGED, desc0->bLength, 'cac2');
 		if (desc == NULL) {
 			ExFreePool (desc0);
 			return STATUS_INSUFFICIENT_RESOURCES;

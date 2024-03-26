@@ -21,6 +21,9 @@
 #include <setupapi.h>
 #include <cfgmgr32.h>
 
+#include <tchar.h>
+#include <Windows.h>
+
 CACDVirtualCP::EnumHelper::ENUMPROC_STATUS
 CACDVirtualCP::EnumHelper::Callback (IN CACDVirtualCP* pVCP) {
     ENUMPROC_STATUS status = CBase::Callback (&pVCP->m_Device);
@@ -41,8 +44,8 @@ CACDVirtualCP::EnumHelper::Callback (IN CACDVirtualCP* pVCP) {
     DEVINST devInst;
     CM_Get_Parent (&devInst, devInfo.DevInst, 0);
 
-	CHAR buffer[128];
-    _snprintf_s(buffer, sizeof(buffer), " (HID%d)", m_dwCurrentIndex);
+	wchar_t buffer[128];
+    swprintf_s(buffer, sizeof(buffer), _T(" (HID%d)"), m_dwCurrentIndex);
     buffer [sizeof (buffer) - 1] = '\0';
 
     ULONG length = 0;
@@ -55,15 +58,15 @@ CACDVirtualCP::EnumHelper::Callback (IN CACDVirtualCP* pVCP) {
 	0		    /* flags */
 	);
     
-    const char* lpcVirtualPanel = "Virtual Panel on ";
-    LPSTR name = (LPSTR) malloc(strlen (lpcVirtualPanel) + length + strlen(buffer));
+    const wchar_t* lpcVirtualPanel = L"Virtual Panel on ";
+    wchar_t* name = (wchar_t*) malloc(wcslen (lpcVirtualPanel) + length + wcslen(buffer));
     if (!name)
 		return ENUMPROC_STATUS_CONTINUE;
 
-    name [0] = '\0';
-    strcat (name, lpcVirtualPanel);
+    name = L'\0';
+    wcscat(name, lpcVirtualPanel);
 
-    char *start = &name [strlen (name)];
+    wchar_t* start = &name [wcslen(name)];
     if (CM_Get_DevNode_Registry_Property (
 	devInst,	    /* devInst */
 	CM_DRP_DEVICEDESC,  /* property */
@@ -75,7 +78,7 @@ CACDVirtualCP::EnumHelper::Callback (IN CACDVirtualCP* pVCP) {
 	    return ENUMPROC_STATUS_CONTINUE;
     start [length - 1] = '\0';
 
-    strcat (start, buffer);
+    wcscat(start, buffer);
     pVCP->m_lpDeviceName = name;
 
     if (CM_Get_Device_ID (
@@ -85,7 +88,7 @@ CACDVirtualCP::EnumHelper::Callback (IN CACDVirtualCP* pVCP) {
 			0		    /* flags */
 	) != CR_SUCCESS)
 	    return ENUMPROC_STATUS_CONTINUE;
-    pVCP->m_lpDeviceID = strdup (buffer);
+    pVCP->m_lpDeviceID = wcsdup (buffer);
 
     pVCP->InitializeFeatures ();
 

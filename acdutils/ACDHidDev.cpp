@@ -19,6 +19,10 @@
 
 #include <assert.h>
 
+#include <hidsdi.h>
+#include <hidpi.h>
+
+
 CUSBMonitorHidDevice::CUSBMonitorHidDevice (
     HANDLE hDevice,
     PHIDP_PREPARSED_DATA pPpd

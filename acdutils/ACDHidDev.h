@@ -21,9 +21,7 @@
 #include <wtypes.h>
 #include <setupapi.h>
 
-extern "C" {
 #include <hidsdi.h>
-}
 
 class CUSBMonitorHidDevice {
 public:

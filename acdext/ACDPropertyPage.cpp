@@ -24,6 +24,8 @@
 #include "ACDUtil.h"
 
 #include <dbt.h>
+#include <tchar.h>
+#include <Windows.h>
 
 // CACDPropertyPage dialog
 
@@ -62,8 +64,8 @@ CACDPropertyPage::UpdateBrightnessEdit ()
     int pos = m_cBrightnessSlider.GetPos ();
 
     // set the spinner text.
-	char buffer[4];
-    _snprintf_s(buffer, sizeof (buffer), "%d", pos * 100 / 255);
+	wchar_t buffer[4];
+    swprintf_s(buffer, sizeof (buffer), _T("%d"), pos * 100 / 255);
     buffer [sizeof (buffer) - 1] = '\0';
     m_cBrightnessEdit.SetWindowText (buffer);
 }
@@ -72,7 +74,7 @@ void
 CACDPropertyPage::UpdateControls() {
     CACDHidDevice& Device = m_pCurrentVirtualCP->GetDevice ();
     USES_CONVERSION;
-    char buffer [128];
+    wchar_t buffer [128];
 
     // set the slider position.
     int pos = m_pCurrentVirtualCP->GetBrightness ();
@@ -83,20 +85,20 @@ CACDPropertyPage::UpdateControls() {
 
     // set the device description.
     if (!Device.GetProductString (buffer, sizeof (buffer))) 
-	GetDlgItem (IDC_DESCRIPTION)->SetWindowText ("(Not Available)");
+	GetDlgItem (IDC_DESCRIPTION)->SetWindowText (_T("(Not Available)"));
     else
-	GetDlgItem (IDC_DESCRIPTION)->SetWindowText (W2T ((LPCWSTR)buffer));
+	GetDlgItem (IDC_DESCRIPTION)->SetWindowText (W2T (buffer));
 
     // set the firmware revision.
     int nVersion = Device.GetDeviceVersionNumber();
-    _snprintf_s(buffer, sizeof (buffer), "%x", nVersion);
+    swprintf_s(buffer, sizeof (buffer), _T("%x"), nVersion);
     buffer [sizeof (buffer) - 1] = '\0';
     GetDlgItem (IDC_FIRMWARE_VERSION)->SetWindowText (buffer);
 
     // set the manufacturing date.
     EDID_STRUCT edid;
     Device.GetEDID (&edid);
-    _snprintf_s(buffer, sizeof (buffer), "%d, ISO week %d",
+    swprintf_s(buffer, sizeof (buffer), _T("%d"), _T("ISO week % d"),
 	edid.ProductIdentification.bManufacturingYear + 1990,
 	edid.ProductIdentification.bManufacturingWeek);
     buffer [sizeof (buffer) - 1] = '\0';
@@ -113,7 +115,7 @@ CACDPropertyPage::InitializeControls() {
     switch (m_VirtualControlPanels.GetCount ()) {
 		case 0:
 			// no ACD found
-			GetDlgItem (IDC_VIRTUAL_CONTROL)->SetWindowText ("None present");
+			GetDlgItem (IDC_VIRTUAL_CONTROL)->SetWindowText (_T("None present"));
 			GetDlgItem (IDC_STATIC_VCP)->ShowWindow (SW_SHOW);
 			GetDlgItem (IDC_STATIC_VCP_ICON)->ShowWindow (SW_SHOW);
 			GetDlgItem (IDC_VIRTUAL_CONTROL)->ShowWindow (SW_SHOW);
@@ -225,7 +227,7 @@ CACDPropertyPage::DoDataExchange (CDataExchange* pDX)
 BEGIN_MESSAGE_MAP (CACDPropertyPage, CPropertyPage)
     ON_WM_DEVICECHANGE ()
     ON_WM_HSCROLL ()
-    ON_WM_TIMER ()
+    // ON_WM_TIMER () todo
     ON_BN_CLICKED (IDC_PROPERTIES_BUTTON, OnBnClickedPropertiesButton)
     ON_BN_CLICKED (IDC_OPTIONS_BUTTON, OnBnClickedOptionsButton)
     ON_LBN_SELCHANGE (IDC_VIRTUAL_CONTROL_LIST, OnLbnSelchangeVirtualControlList)
@@ -275,7 +277,7 @@ CACDPropertyPage::OnTimer (UINT nIDEvent)
 void
 CACDPropertyPage::OnBnClickedPropertiesButton ()
 {
-    typedef void (_stdcall *LPFNDLLFUNC) (HWND, HINSTANCE, LPCSTR, int);
+    typedef void (_stdcall *LPFNDLLFUNC) (HWND, HINSTANCE, LPCWSTR, int);
 
     HINSTANCE hDLL = LoadLibrary (_TEXT ("DEVMGR.DLL"));
     if (hDLL == NULL)
@@ -316,15 +318,15 @@ CACDPropertyPage::OnEnChangeBrightnessEdit ()
 	|| GetFocus () != &m_cBrightnessEdit /* no focus */)
 	return;
 
-    char buffer [4]; // text limit is set to 3 chars
+    wchar_t buffer [4]; // text limit is set to 3 chars
     m_cBrightnessEdit.GetWindowText (buffer, sizeof (buffer));
     buffer [sizeof (buffer) - 1] = '\0';
-    int value = atoi (buffer);
+    int value = _wtoi (buffer);
 
     // check for out-of-range.
     if (value < 0 || value > 100) {
 		value = min (0, max (value, 100));
-		_snprintf_s(buffer, sizeof (buffer), "%d", value);
+		swprintf_s(buffer, sizeof (buffer), _T("%d"), value);
 		buffer [sizeof (buffer) - 1] = '\0';
 
 		m_cBrightnessEdit.SetWindowText (buffer);

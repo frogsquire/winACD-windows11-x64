@@ -52,8 +52,8 @@ private:
     //
 
     CACDHidDevice m_Device;	//!< The HID device.
-    LPCSTR m_lpDeviceName;	//!< The USB device's name.
-    LPCSTR m_lpDeviceID;	//!< Hardware instance id.
+    LPCWSTR m_lpDeviceName;	//!< The USB device's name.
+    LPCWSTR m_lpDeviceID;	//!< Hardware instance id.
 
     //
     // Settings:
@@ -104,12 +104,12 @@ public:
     }
 
     /** Return the device's name. */
-    LPCSTR GetDeviceName() const {
+    LPCWSTR GetDeviceName() const {
 		return m_lpDeviceName;
     }
 
     /** Return the device's hardware instance ID. */
-    LPCSTR GetDeviceID() const {
+    LPCWSTR GetDeviceID() const {
 		return m_lpDeviceID;
     }
 

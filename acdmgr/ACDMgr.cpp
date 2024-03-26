@@ -28,6 +28,9 @@
 #include <iostream>
 #include <tchar.h>
 #include <string.h>
+#include <setupapi.h>
+#include <hidsdi.h>
+#include <hidpi.h>
 
 using namespace std;
 

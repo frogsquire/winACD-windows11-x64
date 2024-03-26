@@ -18,7 +18,6 @@
 //
 
 #include "stdafx.h"
-#include "ACDExt.h"
 #include "ACDOptionsDlg.h"
 #include "ACDUtil.h"
 
@@ -26,8 +25,7 @@ extern "C" {
 #include <powrprof.h>
 }
 
-// CACDOptionsDialog dialog
-
+// CACDOptionsDial
 IMPLEMENT_DYNAMIC (CACDOptionsDialog, CDialog)
 CACDOptionsDialog::CACDOptionsDialog (
     CACDVirtualCP::CVirtualCPArray& cArray,
@@ -49,24 +47,24 @@ CACDOptionsDialog::OnInitDialog ()
 
     CDialog::OnInitDialog ();
 
-    index = m_cPowerActionComboBox.AddString ("Turn monitor off");
+    index = m_cPowerActionComboBox.AddString (_T("Turn monitor off"));
     m_cPowerActionComboBox.SetItemData (index, ACD_POWER_BUTTON_DO_NOTHING);
     selection = index; // default
 
     if (IsPwrSuspendAllowed ()) {
-        index = m_cPowerActionComboBox.AddString ("Stand by");
+        index = m_cPowerActionComboBox.AddString (_T("Stand by"));
         m_cPowerActionComboBox.SetItemData (index, ACD_POWER_BUTTON_STAND_BY);
 	if (action == ACD_POWER_BUTTON_STAND_BY)
 	    selection = index;
     }
     if (IsPwrHibernateAllowed ()) {
-	index = m_cPowerActionComboBox.AddString ("Hibernate");
+	index = m_cPowerActionComboBox.AddString (_T("Hibernate"));
 	m_cPowerActionComboBox.SetItemData (index, ACD_POWER_BUTTON_HIBERNATE);
 	if (action == ACD_POWER_BUTTON_HIBERNATE)
 	    selection = index;
     }
     if (IsPwrShutdownAllowed ()) {
-	index = m_cPowerActionComboBox.AddString ("Shut down");
+	index = m_cPowerActionComboBox.AddString (_T("Shut down"));
 	m_cPowerActionComboBox.SetItemData (index, ACD_POWER_BUTTON_SHUT_DOWN);
 	if (action == ACD_POWER_BUTTON_SHUT_DOWN)
 	    selection = index;

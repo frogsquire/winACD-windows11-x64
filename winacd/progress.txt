@@ -1,0 +1,9 @@
+ACDUtils: builds, no warnings or errors
+ACDPower: builds, no warnings or errors
+ACDMon: builds, no warnings or errors
+ACDFilter: builds, no warnings or errors
+
+ACDMgr: many errors, mostlyt HID related
+ACDExt: errors similar to ACDMon
+
+all files building!

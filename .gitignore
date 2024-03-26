@@ -1,3 +1,10 @@
 .vs
 .vscode
 *.vcxproj.user
+/acdext/x64
+/acdfilter/x64
+/acdmgr/x64
+/acdmon/x64
+/acdpower/x64
+/acdutils/x64
+/winacd/x64

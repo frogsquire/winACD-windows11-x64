@@ -32,6 +32,9 @@ extern "C" {
 #include <powrprof.h>
 }
 
+#include <hidsdi.h>
+#include <hidpi.h>
+
 static SERVICE_STATUS_HANDLE hServiceStatus; 
 static HANDLE hShutdownEvent;
 static HDEVNOTIFY hDevNotify;

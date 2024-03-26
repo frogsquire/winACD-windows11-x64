@@ -15,6 +15,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "ACDUtil.h"
+#include <tchar.h>
+#include <Windows.h>
 
 	
 BOOL
@@ -22,11 +24,11 @@ ACDUtil::GetDisableOSDPref() {
 	HKEY hKey;
 	DWORD value = 0;
 
-	LONG lRet = RegOpenKeyEx(HKEY_CURRENT_USER, "SOFTWARE\\WinACD\\Preferences", 0, KEY_READ, &hKey);
+	LONG lRet = RegOpenKeyEx(HKEY_CURRENT_USER, _T("SOFTWARE\\WinACD\\Preferences"), 0, KEY_READ, &hKey);
 
 	if (lRet == ERROR_SUCCESS) {
 		DWORD type, sz = sizeof(value);
-		RegQueryValueEx(hKey, "DisableOSD", 0, &type, (LPBYTE) &value, &sz);
+		RegQueryValueEx(hKey, _T("DisableOSD"), 0, &type, (LPBYTE) &value, &sz);
 
 		RegCloseKey(hKey);
 	}
@@ -38,15 +40,15 @@ ACDUtil::GetDisableOSDPref() {
 DWORD
 ACDUtil::GetHotKeyPref(BOOL bIncreaseBrightness) {
 	LPTSTR lpValueName = bIncreaseBrightness
-			? "IncreaseBrightnessHotKey" 
-			: "DecreaseBrightnessHotKey";
+			? _T("IncreaseBrightnessHotKey") 
+			: _T("DecreaseBrightnessHotKey");
 
 
 	// default setting for the system hotkeys
 	DWORD value = MAKELONG(bIncreaseBrightness ? VK_ADD : VK_SUBTRACT, HOTKEYF_CONTROL | HOTKEYF_ALT);
 
 	HKEY hKey;
-	LONG lRet = RegOpenKeyEx(HKEY_CURRENT_USER, "SOFTWARE\\WinACD\\Preferences", 0, KEY_READ, &hKey);
+	LONG lRet = RegOpenKeyEx(HKEY_CURRENT_USER, _T("SOFTWARE\\WinACD\\Preferences"), 0, KEY_READ, &hKey);
 
 	if (lRet == ERROR_SUCCESS) {
 		DWORD type, sz = sizeof(value);
@@ -61,14 +63,14 @@ ACDUtil::GetHotKeyPref(BOOL bIncreaseBrightness) {
 void
 ACDUtil::SetHotKeyPref(BOOL bIncreaseBrightness, DWORD wHotKey) {
 	LPTSTR lpValueName = bIncreaseBrightness
-	? "IncreaseBrightnessHotKey" 
-	: "DecreaseBrightnessHotKey";
+	? _T("IncreaseBrightnessHotKey") 
+	: _T("DecreaseBrightnessHotKey");
 
 	HKEY hKey;
 	LONG lRet;
 
 	lRet = RegCreateKeyEx(
-	HKEY_CURRENT_USER, "SOFTWARE\\WinACD\\Preferences", 0, 0,
+	HKEY_CURRENT_USER, _T("SOFTWARE\\WinACD\\Preferences"), 0, 0,
 	REG_OPTION_NON_VOLATILE, KEY_SET_VALUE, 0, &hKey, 0);
 
 	if (lRet == ERROR_SUCCESS) {
@@ -84,11 +86,11 @@ ACDUtil::GetDisabledButtonsPref() {
 	HKEY hKey;
 	DWORD value = 0;
 
-	LONG lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\WinACD\\Preferences", 0, KEY_READ, &hKey);
+	LONG lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\WinACD\\Preferences"), 0, KEY_READ, &hKey);
 
 	if (lRet == ERROR_SUCCESS) {
 		DWORD type, sz = sizeof(value);
-		RegQueryValueEx(hKey, "DisabledButtons", 0, &type, (LPBYTE) &value, &sz);
+		RegQueryValueEx(hKey, _T("DisabledButtons"), 0, &type, (LPBYTE) &value, &sz);
 
 		RegCloseKey(hKey);
 	}
@@ -101,10 +103,10 @@ ACDUtil::SetDisabledButtonsPref(UCHAR bMask) {
 	HKEY hKey;
 	DWORD value = bMask;
 
-	LONG lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\WinACD\\Preferences", 0, KEY_SET_VALUE, &hKey);
+	LONG lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\WinACD\\Preferences"), 0, KEY_SET_VALUE, &hKey);
 
 	if (lRet == ERROR_SUCCESS) {
-		RegSetValueEx(hKey, "DisabledButtons", 0, REG_DWORD, (LPBYTE) &value, sizeof(value));
+		RegSetValueEx(hKey, _T("DisabledButtons"), 0, REG_DWORD, (LPBYTE) &value, sizeof(value));
 
 		RegCloseKey(hKey);
 	}
@@ -115,11 +117,11 @@ ACDUtil::GetPowerButtonActionPref() {
 	HKEY hKey;
 	DWORD value = 0;
 
-	LONG lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\WinACD\\Preferences", 0, KEY_READ, &hKey);
+	LONG lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\WinACD\\Preferences"), 0, KEY_READ, &hKey);
 
 	if (lRet == ERROR_SUCCESS) {
 		DWORD type, sz = sizeof(value);
-		RegQueryValueEx(hKey, "PowerButtonAction", 0, &type, (LPBYTE) &value, &sz);
+		RegQueryValueEx(hKey, _T("PowerButtonAction"), 0, &type, (LPBYTE) &value, &sz);
 
 		RegCloseKey(hKey);
 	}
@@ -132,10 +134,10 @@ ACDUtil::SetPowerButtonActionPref(ACDPowerButtonAction iAction) {
 	HKEY hKey;
 	DWORD value = iAction;
 
-	LONG lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\WinACD\\Preferences", 0, KEY_SET_VALUE, &hKey);
+	LONG lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\WinACD\\Preferences"), 0, KEY_SET_VALUE, &hKey);
 
 	if (lRet == ERROR_SUCCESS) {
-		RegSetValueEx(hKey, "PowerButtonAction", 0, REG_DWORD, (LPBYTE) &value, sizeof(value));
+		RegSetValueEx(hKey, _T("PowerButtonAction"), 0, REG_DWORD, (LPBYTE) &value, sizeof(value));
 
 		RegCloseKey(hKey);
 	}
@@ -146,11 +148,11 @@ ACDUtil::GetForceShutdownPref() {
 	HKEY hKey;
 	DWORD value = 0;
 
-	LONG lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\WinACD\\Preferences", 0, KEY_READ, &hKey);
+	LONG lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\WinACD\\Preferences"), 0, KEY_READ, &hKey);
 
 	if (lRet == ERROR_SUCCESS) {
 		DWORD type, sz = sizeof(value);
-		RegQueryValueEx(hKey, "ForceShutdown", 0, &type, (LPBYTE) &value, &sz);
+		RegQueryValueEx(hKey, _T("ForceShutdown"), 0, &type, (LPBYTE) &value, &sz);
 
 		RegCloseKey(hKey);
 	}
@@ -163,10 +165,10 @@ ACDUtil::SetForceShutdownPref(BOOL bForce) {
 	HKEY hKey;
 	DWORD value = bForce;
 
-	LONG lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\WinACD\\Preferences", 0, KEY_SET_VALUE, &hKey);
+	LONG lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\WinACD\\Preferences"), 0, KEY_SET_VALUE, &hKey);
 
 	if (lRet == ERROR_SUCCESS) {
-		RegSetValueEx(hKey, "ForceShutdown", 0, REG_DWORD, (LPBYTE) &value, sizeof(value));
+		RegSetValueEx(hKey, _T("ForceShutdown"), 0, REG_DWORD, (LPBYTE) &value, sizeof(value));
 
 		RegCloseKey(hKey);
 	}

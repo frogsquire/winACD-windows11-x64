@@ -1,82 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<ItemGroup Label="ProjectConfigurations">
-		<ProjectConfiguration Include="Debug|Win32">
-			<Configuration>Debug</Configuration>
-			<Platform>Win32</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|Win32">
-			<Configuration>Release</Configuration>
-			<Platform>Win32</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Debug|x64">
-			<Configuration>Debug</Configuration>
-			<Platform>x64</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|x64">
-			<Configuration>Release</Configuration>
-			<Platform>x64</Platform>
-		</ProjectConfiguration>
-	</ItemGroup>
-	<PropertyGroup Label="Globals">
-		<VCProjectVersion>16.0</VCProjectVersion>
-		<ProjectGuid>{F02C091E-E9C6-4246-B3B4-414372127F4D}</ProjectGuid>
-		<Keyword>MakeFileProj</Keyword>
-		<RootNamespace>$(MSBuildProjectName)</RootNamespace>
-		<SupportsPackaging>false</SupportsPackaging>
-		<RequiresPackageProject>true</RequiresPackageProject>
-	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-		<TargetVersion>Windows10</TargetVersion>
-		<UseDebugLibraries>true</UseDebugLibraries>
-		<DriverTargetPlatform>Desktop</DriverTargetPlatform>
-		<DriverType>WDM</DriverType>
-		<PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
-		<ConfigurationType>Driver</ConfigurationType>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-		<TargetVersion>Windows10</TargetVersion>
-		<UseDebugLibraries>false</UseDebugLibraries>
-		<DriverTargetPlatform>Desktop</DriverTargetPlatform>
-		<DriverType>WDM</DriverType>
-		<PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
-		<ConfigurationType>Driver</ConfigurationType>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-		<TargetVersion>Windows10</TargetVersion>
-		<UseDebugLibraries>true</UseDebugLibraries>
-		<DriverTargetPlatform>Desktop</DriverTargetPlatform>
-		<DriverType>WDM</DriverType>
-		<PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
-		<ConfigurationType>Driver</ConfigurationType>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-		<TargetVersion>Windows10</TargetVersion>
-		<UseDebugLibraries>false</UseDebugLibraries>
-		<DriverTargetPlatform>Desktop</DriverTargetPlatform>
-		<DriverType>WDM</DriverType>
-		<PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
-		<ConfigurationType>Driver</ConfigurationType>
-	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-	<PropertyGroup>
-		<OutDir>$(IntDir)</OutDir>
-	</PropertyGroup>
-	<ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-	</ImportGroup>
-	<ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-	</ImportGroup>
-	<ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-	</ImportGroup>
-	<ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-	</ImportGroup>
-	<PropertyGroup Label="UserMacros" />
-	<!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{F02C091E-E9C6-4246-B3B4-414372127F4D}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+    <RootNamespace>$(MSBuildProjectName)</RootNamespace>
+    <SupportsPackaging>false</SupportsPackaging>
+    <RequiresPackageProject>true</RequiresPackageProject>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <DriverTargetPlatform>Desktop</DriverTargetPlatform>
+    <DriverType>WDM</DriverType>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>Driver</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <DriverTargetPlatform>Desktop</DriverTargetPlatform>
+    <DriverType>WDM</DriverType>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>Driver</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <DriverTargetPlatform>Desktop</DriverTargetPlatform>
+    <DriverType>WDM</DriverType>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>Driver</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <DriverTargetPlatform>Desktop</DriverTargetPlatform>
+    <DriverType>WDM</DriverType>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>Driver</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <OutDir>$(IntDir)</OutDir>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
 		<NMakeBuildCommandLine>$(ProjectDir)/ddkbuild.bat -WXP checked $(InputDir)</NMakeBuildCommandLine>
 		<NMakeOutput>objfre_wxp_x86/i386/acdfilter.sys</NMakeOutput>
 		<NMakeCleanCommandLine>$(ProjectDir)/ddkbuild.bat -WXP checked $(InputDir) -clean</NMakeCleanCommandLine>
@@ -90,82 +91,85 @@
 		<NMakeReBuildCommandLine>$(ProjectDir)/ddkbuild.bat -WXP free $(InputDir) -c</NMakeReBuildCommandLine>
 		<NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
 	</PropertyGroup>-->
-	<ItemGroup Label="WrappedTaskItems">
-		<ProjectReference Include="..\acdutils\ACDUtils.vcxproj">
-			<Project>{c3b9cd00-a1a1-4c63-81fd-74fbcb249fe3}</Project>
-		</ProjectReference>
-	</ItemGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-		<TargetName>ACDFilter</TargetName>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-		<TargetName>ACDFilter</TargetName>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-		<TargetName>ACDFilter</TargetName>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-		<TargetName>ACDFilter</TargetName>
-	</PropertyGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-		<Link>
-			<AdditionalDependencies>%(AdditionalDependencies);$(DDK_LIB_PATH)\hidclass.lib</AdditionalDependencies>
-		</Link>
-		<ClCompile>
-			<ExceptionHandling>
-			</ExceptionHandling>
-		</ClCompile>
-	</ItemDefinitionGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-		<Link>
-			<AdditionalDependencies>%(AdditionalDependencies);$(DDK_LIB_PATH)\hidclass.lib</AdditionalDependencies>
-		</Link>
-		<ClCompile>
-			<ExceptionHandling>
-			</ExceptionHandling>
-		</ClCompile>
-	</ItemDefinitionGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-		<Link>
-			<AdditionalDependencies>%(AdditionalDependencies);$(DDK_LIB_PATH)\hidclass.lib</AdditionalDependencies>
-		</Link>
-		<ClCompile>
-			<ExceptionHandling>
-			</ExceptionHandling>
-		</ClCompile>
-	</ItemDefinitionGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-		<Link>
-			<AdditionalDependencies>%(AdditionalDependencies);$(DDK_LIB_PATH)\hidclass.lib</AdditionalDependencies>
-		</Link>
-		<ClCompile>
-			<ExceptionHandling>
-			</ExceptionHandling>
-		</ClCompile>
-	</ItemDefinitionGroup>
-	<ItemGroup>
-		<ClCompile Include="acdfilter.c" />
-	</ItemGroup>
-	<ItemGroup>
-		<ClInclude Include="acddescriptors.c" />
-		<ClInclude Include="acdfilter.h" />
-	</ItemGroup>
-	<ItemGroup>
-		<ResourceCompile Include="acdfilter.rc" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="makefile">
-			<FileType>Makefile</FileType>
-		</None>
-		<None Include="sources" />
-		<None Include="winacd.inf">
-			<DeploymentContent>true</DeploymentContent>
-		</None>
-	</ItemGroup>
-	<ItemGroup>
-		<Text Include="ReadMe.txt" />
-	</ItemGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-	<ImportGroup Label="ExtensionTargets">
-	</ImportGroup>
+  <ItemGroup Label="WrappedTaskItems">
+    <ProjectReference Include="..\acdutils\ACDUtils.vcxproj">
+      <Project>{c3b9cd00-a1a1-4c63-81fd-74fbcb249fe3}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetName>ACDFilter</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>ACDFilter</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>ACDFilter</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>ACDFilter</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies);$(DDK_LIB_PATH)\hidclass.lib</AdditionalDependencies>
+    </Link>
+    <ClCompile>
+      <ExceptionHandling>
+      </ExceptionHandling>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies);$(DDK_LIB_PATH)\hidclass.lib</AdditionalDependencies>
+    </Link>
+    <ClCompile>
+      <ExceptionHandling>
+      </ExceptionHandling>
+    </ClCompile>
+    <DriverSign>
+      <AdditionalOptions>/fd SHA256 %(AdditionalOptions)</AdditionalOptions>
+    </DriverSign>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies);$(DDK_LIB_PATH)\hidclass.lib</AdditionalDependencies>
+    </Link>
+    <ClCompile>
+      <ExceptionHandling>
+      </ExceptionHandling>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies);$(DDK_LIB_PATH)\hidclass.lib</AdditionalDependencies>
+    </Link>
+    <ClCompile>
+      <ExceptionHandling>
+      </ExceptionHandling>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="acdfilter.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="acddescriptors.c" />
+    <ClInclude Include="acdfilter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="acdfilter.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="makefile">
+      <FileType>Makefile</FileType>
+    </None>
+    <None Include="sources" />
+    <None Include="winacd.inf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>
